@@ -1,0 +1,233 @@
+:root {
+    --bg-color: #0a0a12;
+    --panel-bg: rgba(255, 255, 255, 0.05);
+    --text-color: #ffffff;
+    --accent-color: #00f0ff;
+    --grid-line: rgba(255, 255, 255, 0.03);
+    --font-main: 'Outfit', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: bg-scroll 20s linear infinite;
+}
+
+@keyframes bg-scroll {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 50px 50px;
+    }
+}
+
+.game-container {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    background: rgba(26, 26, 46, 0.8);
+    border-radius: 20px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.05);
+    align-items: flex-start;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    z-index: 1;
+}
+
+.game-info,
+.next-piece-box {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 180px;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    background: linear-gradient(45deg, #ff00cc, #3333ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+}
+
+h2 {
+    font-size: 1.2rem;
+    color: #888;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.score-box,
+.level-box,
+.lines-box,
+.next-piece-box {
+    background: var(--panel-bg);
+    padding: 1.5rem;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+p {
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+.canvas-wrapper {
+    position: relative;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+canvas#tetris {
+    display: block;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+canvas#next {
+    display: block;
+    margin: 0 auto;
+    background-color: transparent;
+}
+
+.btn {
+    background: linear-gradient(90deg, #ff00cc, #3333ff);
+    border: none;
+    padding: 1rem 2rem;
+    color: white;
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 100%;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(51, 51, 255, 0.4);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    backdrop-filter: blur(5px);
+    border-radius: 8px;
+}
+
+.hidden {
+    display: none;
+}
+
+.overlay h2 {
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.controls-info {
+    margin-top: 1rem;
+    text-align: left;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+.controls-info h3 {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+    color: #fff;
+    text-align: center;
+}
+
+.controls-info p {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.controls-info span {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    color: #fff;
+}
+
+@media (max-width: 800px) {
+    .game-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .game-info,
+    .next-piece-box {
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .score-box,
+    .level-box,
+    .lines-box {
+        padding: 0.5rem 1rem;
+        min-width: 80px;
+    }
+
+    h1 {
+        width: 100%;
+        font-size: 2rem;
+    }
+
+    .controls-info {
+        display: none;
+    }
+}
